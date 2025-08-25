@@ -94,7 +94,6 @@ def main():
 
     # call number to words function
     res = number_to_words(num)
-
     # print final result
     print(res)
 
