@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Program 14</title>
+</head>
+<body>
+
+    <pre>14 Student Result Processing (for…in + Conditions) 
+    Problem:  
+    An object stores student marks: 
+    Rules: 
+    Any subject 35 = "Fail" 
+    If avg ≥ 75 and no fails → "Distinction" 
+    If avg 50–74 and no fails → "Pass" 
+    Otherwise → "Fail" 
+    Use for...in loop with conditions. 
+    Sample Test Cases:  
+    {math:90, science:25, english:80, history:34, computer:99} → Fail (due to <35)  
+    {math:80, science:75, english:78} → Distinction  
+    {math:60, science:55, english:50} → Pass 
+    </pre>
+    <script>
+
+      const result = (marks) => {
+        let total = 0;
+        let count = 0;
+        let fail = false;
+
+        for (let subject in marks) {
+          if (marks[subject] < 35) {
+            fail = true;
+            break;
+          }
+          total += marks[subject];
+          count++;
+        }
+
+        if (fail) {
+          return "Fail";
+        }
+
+        let avg = total / count;
+
+        if (avg >= 75) {
+          return "Distinction";
+        } else if (avg >= 50) {
+          return "Pass";
+        } else {
+          return "Fail";
+        }
+      };
+
+      console.log(result({math:90, science:25, english:80, history:34, computer:99})); // Fail
+      console.log(result({math:80, science:75, english:78})); // Distinction
+      console.log(result({math:60, science:55, english:50})); // Pass
+    </script>
+</body>
+</html>

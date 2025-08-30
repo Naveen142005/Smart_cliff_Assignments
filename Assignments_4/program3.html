@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Program 3 - Ticket Fare System</title>
+</head>
+<body>
+  <script>
+    // 3) Ticket Fare System with Special Rule
+
+    const ticket_fare_system = (age, day) => {
+        let fare;
+        let category;
+
+        // Normal fare rules
+        if (age < 5) {
+            fare = 0;
+            category = "Free";
+        }
+        else if (age >= 5 && age <= 17) {
+            fare = 50;
+            category = "Child Fare";
+        }
+        else if (age >= 18 && age <= 59) {
+            fare = 100;
+            category = "Adult Fare";
+        }
+        else {
+            fare = 70;
+            category = "Senior Fare";
+        }
+
+        // Check for Sunday discount
+        if (day.toLowerCase() === "sunday") {
+            if (fare > 0) {
+                return `${category} (50% off)`;
+            } else {
+                return `${category} (50% off applied → still Free)`;
+            }
+        }
+
+        return `${category}`;
+    }
+
+    // Sample Test Cases
+    console.log("Input: age=4, day=Sunday →", ticket_fare_system(4, "Sunday"));
+    console.log("Input: age=25, day=Sunday →", ticket_fare_system(25, "Sunday"));
+    console.log("Input: age=65, day=Monday →", ticket_fare_system(65, "Monday"));
+
+    console.log("---Program ended---");
+  </script>
+</body>
+</html>

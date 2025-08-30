@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Program 1</title>
+  </head>
+  <body>
+    <script>
+      let st = 0,
+        i,
+        j;
+      let bool = true;
+      // outer loop
+      for (i = 0; i < 8; i += 1) {
+        // tracking initial position of black
+        bool = !bool;
+
+        if (bool) st = 1;
+        else st = 0;
+
+        // Change the position
+        let result = "";
+        for (j = st; j < 8; j += 2) {
+          // Printing
+          result += "(" + i + "," + j + ") ";
+
+          // Break when condition met.
+          if (i === 5 && j === 5) break;
+        }
+        console.log(result);
+
+        if (i === 5 && j === 5) break;
+      }
+      console.log("---Program ended---");
+    </script>
+  </body>
+</html>

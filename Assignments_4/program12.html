@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Program 12</title>
+</head>
+<body>
+  <pre>12) Traffic Light Controller 
+Problem:  
+Simulate traffic lights with states: 
+"Green" → cars move 
+"Yellow" → prepare to stop 
+"Red" → stop 
+Cycle through these 3 states infinitely. After 5 cycles, stop the loop using switch + 
+cnt + break. 
+Sample Test Cases:  
+Output: sequence of states; ends with “Stopped after 5 cycles” </pre>
+    <script>
+      const Traffic_light_controller = () => {
+        let states = [];
+        let cnt = 0;
+
+        while (cnt < 5) {
+          switch (cnt % 3) {
+            case 0:
+              states.push("Green");
+              break;
+            case 1:
+              states.push("Yellow");
+              break;
+            case 2:
+              states.push("Red");
+              break;
+          }
+          cnt++;
+        }
+        states.push("Stopped after 5 cycles");
+        return states;
+      };
+      console.log(Traffic_light_controller());
+    </script>
+</body>
+</html>

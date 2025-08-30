@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Program 7</title>
+  </head>
+
+  <body>
+    <pre>
+    7) Maze Escape  
+Problem:  
+You are given a 2D grid (matrix) representing a maze where 0 = free path and 1 = wall. Start 
+from (0,0) and try moving right or down only. Stop all loops immediately once you reach the 
+bottom-right corner. Print "Escaped" or "Blocked".  Use nested loops with labeled break. 
+Sample Test Cases:  
+[[0,0,1],[1,0,0],[1,0,0]] → “Escaped” (path along zeros)  
+[[0,1],[1,0]] → “Blocked”
+  </pre
+    >
+    <script>
+      let maze = [
+        [0, 0, 1],
+        [0, 0, 0],
+        [0, 1, 1],
+      ];
+
+      const dfs = (maze, i, j) => {
+        if (i < 0 || j < 0 || i >= maze.length || j >= maze[0].length) 
+          return false;
+
+        if (maze[i][j] == 1) 
+          return false;
+
+        if (i == maze.length - 1 && j == maze[0].length - 1) {
+          return true;
+        } 
+
+              //Right                 //Down 
+        return dfs(maze, i + 1, j) || dfs(maze, i, j + 1);
+       
+      };
+
+      console.log(dfs(maze, 0, 0) ? "Escaped" : "Blocked");
+
+    </script>
+  </body>
+</html>
+
+

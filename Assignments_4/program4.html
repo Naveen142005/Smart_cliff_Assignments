@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Program 4 - Exam Score Validation</title>
+  </head>
+  <body>
+    <script>
+      // 4) Exam Score Validation
+
+      const ExamScoreValidation = (arr) => {
+        // Checking the condition
+        for (let i = 0; i < arr.length; i += 1) {
+          if (arr[i][0] <= 35)
+            return `stops early and reports failing coordinate (${i},0)`;
+          if (arr[i][1] <= 35)
+            return `stops early and reports failing coordinate (${i},1)`;
+        }
+        return "All OK";
+      };
+
+      // Sample test cases..
+      console.log(
+        ExamScoreValidation([
+          [60, 70],
+          [80, 90],
+        ])
+      );
+      console.log(
+        ExamScoreValidation([
+          [60, 34],
+          [80, 90],
+        ])
+      );
+      console.log("---Program ended---");
+    </script>
+  </body>
+</html>

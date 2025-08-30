@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Program 10</title>
+  </head>
+  <body>
+    <pre>
+      10) Bank ATM Simulation (While + Break/Continue) 
+    Problem:  
+    ATM operations: 
+    User starts with ₹10,000. 
+    Allowed operations: Deposit, Withdraw, Check Balance. 
+    Withdraw must fail if balance < amount. 
+    The loop continues until the user selects "Exit". 
+    Use while(true) + break and continue for invalid input. 
+    Sample Test Cases (scripted ops):  
+    Deposit 1000 → Withdraw 300 → Balance → Exit
+    </pre>
+    <script>
+      const Bank_ATM_Simulation = () => {
+        let balance = 10000;
+
+        while (true) {
+          let operation = prompt(
+            "Enter operation (Deposit, Withdraw, Balance, Exit):"
+          );
+
+          if (operation === "Exit")
+             break;
+
+          if (!["Deposit", "Withdraw", "Balance"].includes(operation)) {
+            alert("Invalid operation");
+            continue;
+          }
+
+          if (operation === "Deposit") {
+            let amount = parseInt(prompt("Enter amount to deposit:"));
+  
+            balance += amount;
+            alert(`Deposited ₹${amount}. New balance: ₹${balance}`);
+
+          } 
+          
+          else if (operation === "Withdraw") {
+            let amount = parseInt(prompt("Enter amount to withdraw:"));
+            
+            if (amount > balance) {
+              alert("Insufficient funds");
+              continue;
+            }
+
+            balance -= amount;
+            alert(`Withdrew ₹${amount}. New balance: ₹${balance}`);
+          } 
+          
+          else if (operation === "Balance") {
+            alert(`Current balance: ₹${balance}`);
+          }
+        }
+      };
+
+      console.log(Bank_ATM_Simulation());
+
+      
+    </script>
+  </body>
+</html>

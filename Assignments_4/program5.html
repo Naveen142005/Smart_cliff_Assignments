@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Program 5 - Filter Words</title>
+  </head>
+  <body>
+    <script>
+      // 5) Filter Words
+
+      const fliter_words = (arr, n) => {
+        let result = "";
+        for (let i = 0; i < arr.length; i += 1) {
+          if (arr[i].length >= n && i != arr.length - 1)
+            result += arr[i] + ", ";
+        }
+        return result.substring(0, result.length - 2);
+      };
+
+      // Sample test case..
+      console.log(
+        fliter_words(["apple", "banana", "grape", "orange", "kiwi"], 5)
+      );
+      console.log("\n---Program Ended---");
+    </script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Program 13</title>
+</head>
+<body>
+  <pre>
+    13) Shopping Cart Discounts (Nested If-Else) 
+    Problem:  
+    Discount rules: 
+    If cart value > ₹10,000 → 20% discount 
+    If cart value 5000–9999 → 10% discount 
+    If cart value < 5000 but customer is "Premium" → 5% discount 
+    Otherwise → no discount 
+    But, if today is "Black Friday", apply flat 50% discount regardless of other rules. Implement 
+    using nested if-else ladder. 
+    Sample Test Cases:  
+    (12000,‘Normal’,‘Friday’) → 20%  
+    (4000,‘Premium’,‘Monday’) → 5%  
+    (4000,‘Normal’,‘Monday’) → 0%  
+    (3000,‘Normal’,‘Black Friday’) → 50% 
+  </pre>
+    <script>
+      const Shopping_cart_discounts = (cart, customer, day) => {
+        let discount = 0;
+
+        if (day === "Black Friday") {
+          discount = 50;
+        } else if (cart > 10000) {
+          discount = 20;
+        } else if (cart >= 5000 && cart < 10000) {
+          discount = 10;
+        } else if (cart < 5000 && customer === "Premium") {
+          discount = 5;
+        }
+
+        return discount;
+      };
+
+      console.log(Shopping_cart_discounts(12000, 'Normal', 'Friday')); // 20%
+      console.log(Shopping_cart_discounts(4000, 'Premium', 'Monday')); // 5%
+      console.log(Shopping_cart_discounts(4000, 'Normal', 'Monday')); // 0%
+      console.log(Shopping_cart_discounts(3000, 'Normal', 'Black Friday')); // 50%
+    </script>
+</body>
+</html>

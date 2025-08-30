@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Program 11</title>
+  </head>
+  <body>
+    <pre>
+    11) Nested Ternary Classification (8 Categories) 
+Problem:  
+Given a number n, classify it as: 
+"Small Positive Even" 
+"Small Positive Odd" 
+"Large Positive Even" 
+"Large Positive Odd" 
+"Small Negative Even" 
+"Small Negative Odd" 
+"Large Negative Even" 
+"Large Negative Odd" 
+Where "Small" = |n| < 100 and "Large" = |n| >= 100. Use only nested ternary operators. 
+Sample Test Cases:  
+n=42 → “Small Positive Even” - n=-101 → “Large Negative Odd”
+  </pre
+    >
+    <script>
+      const nested_ternary_classification = (n) => {
+        let size = Math.abs(n) < 100 ? "Small" : "Large";
+
+        // Using nested ternary
+        let result =
+          n > 0
+            ? n % 2 === 0
+              ? size + " Positive Even"
+              : size + " Positive Odd"
+            : n % 2 === 0
+            ? size + " Negative Even"
+            : size + " Negative Odd";
+
+        return result;
+      };
+
+      console.log(nested_ternary_classification(42)); // "Small Positive Even"
+      console.log(nested_ternary_classification(-101)); // "Large Negative Odd"
+    </script>
+  </body>
+</html>

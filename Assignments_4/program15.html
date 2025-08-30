@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Program 15</title>
+</head>
+<body>
+    <pre>
+      15) Airline Check-in (Switch + Nested If) 
+Problem:  
+Passenger rules: 
+If class = "Business" → Priority Check-in 
+If class = "Economy" → Normal Check-in 
+If baggage > 30kg → "Excess Baggage Fee" 
+If passenger is "VIP" → Always "Priority Check-in" regardless of class 
+Use switch-case combined with if conditions to handle all cases. 
+VIP → Priority regardless. Else Business→Priority; Economy→Normal. If baggage>30 → add 
+“Excess Baggage Fee”. 
+Sample Test Cases:  
+(VIP, Economy, 25) → “Priority Check-in”  
+(Business, 35) → “Priority Check-in + Excess Baggage Fee”  
+(Economy, 20) → “Normal Check-in” 
+    </pre>
+    <script>
+      const Airline_check_in = (status, cls, baggage) => {
+        let result = "";
+
+        if (status === "VIP") {
+          result = "Priority Check-in";
+        } else {
+          switch (cls) {
+            case "Business":
+              result = "Priority Check-in";
+              break;
+            case "Economy":
+              result = "Normal Check-in";
+              break;
+            default:
+              result = "Invalid class";
+          }
+        }
+
+        if (baggage > 30) {
+          result += " + Excess Baggage Fee";
+        }
+
+        return result;
+      };
+
+      console.log(Airline_check_in("VIP", "Economy", 25)); // "Priority Check-in"
+      console.log(Airline_check_in("Normal", "Business", 35)); // "Priority Check-in + Excess Baggage Fee"
+      console.log(Airline_check_in("Normal", "Economy", 20)); // "Normal Check-in"
+    </script>
+</body>
+</html>

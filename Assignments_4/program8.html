@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Program 8</title>
+  </head>
+  <body>
+    <pre>
+8) Smart Elevator (Switch + Nested If) 
+Problem:  
+An elevator system handles requests: 
+Floor 0 = Lobby → "Welcome" 
+Floor 1–5 = Offices → "Go to Office" 
+Floor 6–9 = Cafeteria → "Go to Cafeteria" 
+Floor 10 = Roof → "Enjoy the view" 
+Any other → "Invalid floor" 
+Additionally, if the elevator is in maintenance mode, no request should be served regardless 
+of floor.  
+Sample Test Cases:  
+(floor=0, maint=false) → “Welcome”  
+(floor=7, maint=false) → “Go to Cafeteria”  
+(floor=7, maint=true) → “Maintenance” - (floor=100, maint=false) → “Invalid floor” </pre
+    >
+    <script>
+
+      const smartElevator = (floor, maint) => {
+        //Check the condition
+        if (maint) return "Maintenance";
+        if (floor === 0)
+          return "Welcome";
+         else if (floor >= 1 && floor <= 5)
+          return "Go to Office";
+         else if (floor >= 6 && floor <= 9)
+          return "Go to Cafeteria";
+         else if (floor === 10)
+          return "Enjoy the view";
+         else
+          return "Invalid floor";
+        
+          //Sample test cases
+          console.log(smartElevator(0, false)); // "Welcome"
+          console.log(smartElevator(7, false)); // "Go to Cafeteria"
+          console.log(smartElevator(7, true));  // "Maintenance"
+          console.log(smartElevator(100, false)); // "Invalid floor"
+      };
+    </script>
+  </body>
+</html>

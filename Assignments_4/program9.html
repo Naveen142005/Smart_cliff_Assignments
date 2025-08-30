@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Program 9</title>
+  </head>
+  <body>
+    <pre>
+9) Online Exam Rules  
+Problem:  
+A student can submit the exam only if: 
+Time left > 0, AND 
+Student has answered at least 1 question, AND 
+Has not already submitted. 
+If any condition fails, output "Submission Failed" with the reason. Implement using if-else 
+with compound conditions. 
+Sample Test Cases:  
+time=10, answered=5, submitted=false → “Submission Accepted”  
+time=0, answered=5, submitted=false → “Submission Failed: No time left”  
+time=10, answered=0, submitted=false → “Submission Failed: No answers”  
+time=10, answered=2, submitted=true → “Submission Failed: Already submitted”</pre
+    >
+    <script>
+      const online_exam = (time, answered, submitted) => {
+        if (time <= 0) return "Submission Failed: No time left";
+        if (answered < 1) return "Submission Failed: No answers";
+        if (submitted) return "Submission Failed: Already submitted";
+        return "Submission Accepted";
+      };
+
+      //Sample test cases
+      console.log(online_exam(10, 5, false)); // "Submission Accepted"
+      console.log(online_exam(0, 5, false)); // "Submission Failed: No time left"
+      console.log(online_exam(10, 0, false)); // "Submission Failed: No answers"
+      console.log(online_exam(10, 2, true)); // "Submission Failed: Already submitted"
+    </script>
+  </body>
+</html>

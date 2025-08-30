@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Program 6</title>
+  </head>
+  <body>
+    <pre>
+      6) Number Guessing  
+Problem:  
+Simulate a guessing game where a user must guess a number between 1–10. Use a do...while 
+loop to ensure the user is prompted at least once, and stop only when the guess matches the 
+secret number. 
+Sample Test Cases:  
+Simulated guesses: [3,7,5] with secret 5 → stops at 5 
+    </pre>
+    
+    <script>
+      // secret number
+      let secret_code = 5;
+      let guessed = -1;
+
+      // keep asking until correct
+      do {
+        guessed = Number(prompt("Enter number between 1 to 10"));
+
+        // check guess
+        if (guessed === secret_code) {
+          console.log("You guessed it right");
+          break;
+        } else {
+          console.log("Try again");
+        }
+
+      } while (secret_code !== guessed);
+    </script>
+  </body>
+</html>
