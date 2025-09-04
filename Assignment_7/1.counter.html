@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .main {
+        width: 100vw;
+        height: 90dvh;
+        display: grid;
+        place-items: center;
+      }
+      .number {
+        font-size: 35rem;
+        animation: identifier 1s ease-out;
+      }
+
+      @keyframes identifier {
+        0% {
+          transform: scale(1);
+        }
+
+        100% {
+          transform: scale(1.2);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2 style="text-align: center">Count Down Timer</h2>
+    <div class="main" id="main"></div>
+
+    <script>
+      const main = document.getElementById("main");
+      const div = document.createElement("div");
+
+      div.classList.add("number");
+      div.innerHTML = 60;
+      main.appendChild(div);
+      let n = 60;
+
+      let temp = div;
+      const t = setInterval(() => {
+        n -= 1;
+
+        let new_div = document.createElement("div");
+        new_div.classList.add("number");
+        new_div.innerHTML = n;
+        temp.replaceWith(new_div);
+        temp = new_div;
+
+        if (n <= 0) {
+          let new_div = document.createElement("div");
+
+          new_div.innerHTML = "FINISHED";
+          new_div.style.fontSize = `100px`;
+          temp.replaceWith(new_div);
+          temp = new_div;
+          clearInterval(t);
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>
