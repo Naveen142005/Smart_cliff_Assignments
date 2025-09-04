@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        :root{
+            --bgcolor:white;
+            --txtcolor:black;
+        }
+      * {
+        overflow: hidden;
+        transition: all 0.3s ease-out;
+      }
+
+      #toggle_btn {
+        color: var(--txtcolor);
+        background-color: var(--bgcolor);
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, 20%);
+        padding: 20px;
+        cursor: pointer;
+        border: 1px solid var(--txtcolor);
+        border-radius: 8px;
+      }
+      body{
+        color: var(--txtcolor);
+        background-color: var(--bgcolor);
+        text-align: justify;
+      }
+      h1 {
+        color: var(--txtcolor);
+        background-color: var(--bgcolor);
+      }
+    </style>
+  </head>
+  <body>
+
+    <center><h1>Program_2</h1></center>
+    <div class="main">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque tempora,
+      mollitia quisquam odit cupiditate dolore facere at fugiat unde. Nostrum
+      expedita ex veniam saepe ab veritatis quas pariatur deleniti illo.
+      Deserunt sequi officiis voluptatum natus sit quas dolor reprehenderit
+      minima temporibus tempora ipsam aspernatur nostrum eius quam, magnam illo
+      iusto dolorum. Tempora quisquam, doloremque illo quod qui modi voluptatem
+      quas! Sit culpa labore, magnam saepe vel voluptates rerum ullam impedit
+      hic temporibus quaerat explicabo tempore enim, a, asperiores consectetur
+      debitis sapiente tempora earum molestias. Dolore molestias tempore
+      dignissimos eligendi vero! Et dolor quos ab vel consequuntur, quidem
+      quaerat architecto dolores in? In eaque quis inventore non modi cupiditate
+      deleniti assumenda, quibusdam nam vel. Illum, praesentium? Nemo blanditiis
+      aliquam architecto officia. Libero harum laborum itaque qui assumenda
+      laboriosam corrupti labore necessitatibus ad. Nostrum necessitatibus,
+      expedita, corporis architecto quis rerum fuga officia saepe possimus,
+      alias eius veniam ea in placeat. Itaque, obcaecati? Adipisci optio quos
+      facilis expedita veniam dicta voluptatum illo sit maiores nesciunt neque
+      quaerat quibusdam, ab et sunt. Quas fugiat, temporibus cupiditate ipsum
+      fugit iure! Ea quod dignissimos quasi consectetur. Dolores quisquam
+      necessitatibus corporis reprehenderit facere alias facilis, quia qui
+      tempora magni, ab labore veniam commodi deserunt provident hic ratione.
+      Esse molestiae eligendi, autem dolore fugit culpa cum ullam hic. Ab vitae
+      possimus ea ad, illo aperiam id sit perspiciatis dolorum veritatis aut
+      facilis eum, commodi unde, quo omnis sequi odit! Temporibus assumenda
+      nostrum eos eum earum voluptates, numquam nobis? Facilis modi saepe quasi
+      reprehenderit laudantium quam ullam repellat officiis voluptas obcaecati
+      repudiandae distinctio veniam facere, perspiciatis optio. Molestiae
+      ducimus accusamus soluta dolores maxime quasi distinctio ad voluptatum,
+      corporis pariatur? Perspiciatis, iure. Fugiat qui officia a voluptatem,
+
+    </div>
+    <div class="btn">
+      <button id="toggle_btn">
+        Click me for switch to
+        <span id="mode">dark</span>
+        mode
+      </button>
+    </div>
+
+    <script>
+        const btn = document.getElementById('toggle_btn');
+        let f = true;
+        btn.addEventListener('click', () => {
+            const root = document.documentElement.style;
+            if (f) {
+                root.setProperty('--txtcolor', 'white')
+                root.setProperty('--bgcolor','black')
+                document.getElementById('mode').innerHTML = 'Light'
+            }
+            else{
+                root.setProperty('--txtcolor', 'black')
+                root.setProperty('--bgcolor','white')
+                document.getElementById('mode').innerHTML = 'Dark'
+            }
+            f = !f;
+        })
+        
+    </script>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    body { background:black; color:white; font-family:sans-serif; }
+    select { padding:5px; margin:10px; }
+  </style>
+</head>
+<body>
+  <h2>Country & State Dropdown</h2>
+
+  <select id="country">
+    <option value="">-- Select Country --</option>
+    <option value="india">India</option>
+    <option value="usa">USA</option>
+  </select>
+
+  <select id="state">
+    <option value="">-- Select State --</option>
+  </select>
+
+  <script>
+    let country = document.getElementById("country")
+    let state = document.getElementById("state")
+
+        let data = {
+      india: ["Tamil Nadu", "Kerala"],
+      usa: ["California", "Texas"]
+    }
+
+    country.addEventListener("change", () => {
+      let c = country.value
+      state.innerHTML = "<option value=''>-- Select State --</option>"  // reset first
+
+      if (c && data[c]) {
+        data[c].forEach(s => {
+          let opt = document.createElement("option")
+          opt.value = s.toLowerCase()
+          opt.text = s
+          state.appendChild(opt)
+        })
+      }
+    })
+  </script>
+</body>
+</html>

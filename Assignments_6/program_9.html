@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <h1>
+            Auto-Save Draft While Typing 
+        </h1>
+        <textarea name="" id="txt-box" cols="30" rows="10" placeholder="Type here..."></textarea>
+    </center>
+
+    <script>
+        const box = document.getElementById('txt-box')
+        let str = "";
+        box.addEventListener('input', () => {
+            localStorage.clear()
+            str = box.value;
+            localStorage.setItem('Key', str)
+        })
+        
+        window.addEventListener('load', () => {
+            box.innerText = localStorage.getItem('Key')
+        })
+    </script>
+</body>
+</html>

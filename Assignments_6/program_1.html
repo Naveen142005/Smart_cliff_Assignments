@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .hide {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <center><h1>Program_1</h1></center>
+    
+    <input type="text" id="input" placeholder="Enter text..." />
+    <div class="main">
+      <ul id="list">
+        <li class="element hide">Phone</li>
+        <li class="element hide">Tablet</li>
+        <li class="element hide">Laptop</li>
+        <li class="element hide">Headphone</li>
+        <li class="element hide">Headphone-wired</li>
+        <li class="element hide">Headphone-bluetooth</li>
+        <li class="element hide">Air bads</li>
+        <li class="element hide">Charger</li>
+        <li class="element hide">Data cable</li>
+      </ul>
+    </div>
+
+    <script>
+      let lists = document.querySelectorAll(".element");
+      let input_box = document.getElementById("input");
+      input_box.addEventListener("input", (e) => {
+        lists.forEach((element) => {
+          let user_entered = e.target.value;
+
+          user_entered = user_entered.toLowerCase();
+          let data = element.innerHTML.toLowerCase();
+
+          if (user_entered.length == 0) {
+            element.classList.add("hide");
+          } 
+          else if (data.includes(user_entered)) {
+            element.classList.remove("hide");
+          }
+           else element.classList.add("hide");
+        });
+      });
+    </script>
+  </body>
+</html>

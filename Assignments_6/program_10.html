@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register</title>
+</head>
+<body>
+  <h2>Register Form</h2>
+  <form onsubmit="return checkForm()">
+    Name: <input type="text" id="name"><br>
+    <span id="nameErr" style="color:red"></span><br>
+
+    Email: <input type="text" id="email"><br>
+    <span id="emailErr" style="color:red"></span><br>
+
+    Password: <input type="password" id="pass"><br>
+    <span id="passErr" style="color:red"></span><br>
+
+    Confirm Password: <input type="password" id="cpass"><br>
+    <span id="cpassErr" style="color:red"></span><br>
+
+    Age: <input type="number" id="age"><br>
+    <span id="ageErr" style="color:red"></span><br>
+
+    Gender:
+    <input type="radio" name="gender" value="Male">Male
+    <input type="radio" name="gender" value="Female">Female
+    <input type="radio" name="gender" value="Other">Other<br>
+    <span id="genderErr" style="color:red"></span><br>
+
+    Interests:
+    <input type="checkbox" name="interest" value="Coding">Coding
+    <input type="checkbox" name="interest" value="Music">Music
+    <input type="checkbox" name="interest" value="Gaming">Gaming<br>
+    <span id="interestErr" style="color:red"></span><br>
+
+    Country:
+    <select id="country">
+      <option value="">--Select--</option>
+      <option value="India">India</option>
+      <option value="USA">USA</option>
+    </select><br>
+    <span id="countryErr" style="color:red"></span><br>
+
+    DOB: <input type="date" id="dob"><br>
+    <span id="dobErr" style="color:red"></span><br>
+
+    Profile Pic: <input type="file" id="pic"><br>
+    <span id="picErr" style="color:red"></span><br>
+
+    Bio: <textarea id="bio" rows="4" cols="30"></textarea><br>
+    <span id="bioErr" style="color:red"></span><br>
+
+    <input type="submit" value="Submit">
+  </form>
+
+  <script>
+    function checkForm() {
+      let ok = true
+
+      let name = document.getElementById("name").value
+      if (name.trim() === "") {
+        document.getElementById("nameErr").innerText = "Name required"
+        ok = false
+      } else document.getElementById("nameErr").innerText = ""
+
+      let email = document.getElementById("email").value
+      let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/
+      if (!emailPattern.test(email)) {
+        document.getElementById("emailErr").innerText = "Invalid email"
+        ok = false
+      } else document.getElementById("emailErr").innerText = ""
+
+      let pass = document.getElementById("pass").value
+      let passPattern = /^(?=.*[A-Z])(?=.*\d).{6,}$/
+      if (!passPattern.test(pass)) {
+        document.getElementById("passErr").innerText = "Weak password"
+        ok = false
+      } else document.getElementById("passErr").innerText = ""
+
+      let cpass = document.getElementById("cpass").value
+      if (cpass !== pass) {
+        document.getElementById("cpassErr").innerText = "Password not match"
+        ok = false
+      } else document.getElementById("cpassErr").innerText = ""
+
+      let age = parseInt(document.getElementById("age").value)
+      if (isNaN(age) || age < 18 || age > 60) {
+        document.getElementById("ageErr").innerText = "Age must be 18-60"
+        ok = false
+      } else document.getElementById("ageErr").innerText = ""
+
+      let gender = document.querySelector('input[name="gender"]:checked')
+      if (!gender) {
+        document.getElementById("genderErr").innerText = "Select gender"
+        ok = false
+      } else document.getElementById("genderErr").innerText = ""
+
+      let interests = document.querySelectorAll('input[name="interest"]:checked')
+      if (interests.length === 0) {
+        document.getElementById("interestErr").innerText = "Pick interest"
+        ok = false
+      } else document.getElementById("interestErr").innerText = ""
+
+      let country = document.getElementById("country").value
+      if (country === "") {
+        document.getElementById("countryErr").innerText = "Select country"
+        ok = false
+      } else document.getElementById("countryErr").innerText = ""
+
+      let dob = document.getElementById("dob").value
+      if (dob === "") {
+        document.getElementById("dobErr").innerText = "DOB required"
+        ok = false
+      } else {
+        let birth = new Date(dob)
+        let today = new Date()
+        let ageNow = today.getFullYear() - birth.getFullYear()
+        if (ageNow < 18) {
+          document.getElementById("dobErr").innerText = "Must be 18+"
+          ok = false
+        } else document.getElementById("dobErr").innerText = ""
+      }
+
+      let pic = document.getElementById("pic").files[0]
+      if (!pic) {
+        document.getElementById("picErr").innerText = "Upload pic"
+        ok = false
+      } else {
+        let type = pic.type
+        let size = pic.size
+        if (!(type === "image/jpeg" || type === "image/png") || size > 2 * 1024 * 1024) {
+          document.getElementById("picErr").innerText = "Only jpg/png <2MB"
+          ok = false
+        } else document.getElementById("picErr").innerText = ""
+      }
+
+      let bio = document.getElementById("bio").value
+      if (bio.length > 200) {
+        document.getElementById("bioErr").innerText = "Bio too long"
+        ok = false
+      } else document.getElementById("bioErr").innerText = ""
+
+      return ok
+    }
+  </script>
+</body>
+</html>

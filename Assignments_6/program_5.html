@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        background-color: black;
+        color: white;
+    }
+    input, button{
+        background-color: white;
+        color: black;
+        border:2px solid rgb(31, 255, 184);
+        padding: 10px;
+        border-radius: 5px;
+    }
+</style>
+<body>
+    <center>
+        <h1>TODO-LIST</h1>
+    </center>
+    <br><br><br><br><br><br><br><br><br><br>
+    <center>
+        <input type="text" id="taskInput" placeholder="Add a new task">
+        <button id="addedit">Add Task</button>
+        <br><br><br>
+        <div class="task-list" id="taskList"></div>
+    </center>
+
+<script>
+    let input = document.getElementById("taskInput")
+    let addedit = document.getElementById("addedit")
+    let taskList = document.getElementById("taskList")
+
+    addedit.addEventListener("click", () => {
+        if(input.value.trim() === "") return
+
+        let div = document.createElement("div")
+        div.style.display = "flex"
+        div.style.justifyContent = "center"
+        div.style.gap = "20px"
+        div.style.margin = "10px 0"
+        div.style.padding = "10px"
+
+
+        let p = document.createElement("p")
+        p.innerText = input.value
+
+        let edit = document.createElement("button")
+        edit.innerText = "Edit"
+
+        let del = document.createElement("button")
+        del.innerText = "Delete"
+
+
+        edit.addEventListener("click", () => {
+            if (edit.innerText === "Edit") {
+                let input = document.createElement("input")
+                input.value = p.innerText
+                div.replaceChild(input, p)
+                edit.innerText = "Save"
+            } 
+            else {
+                let input = div.querySelector("input")
+                p.innerText = input.value
+                div.replaceChild(p, input)
+                edit.innerText = "Edit"
+            }
+        })
+
+
+        del.addEventListener("click", () => {
+            div.remove()
+        })
+
+        div.appendChild(p)
+        div.appendChild(edit)
+        div.appendChild(del)
+        
+        taskList.appendChild(div)
+
+        input.value = ""
+    })
+</script>
+</body>
+</html>

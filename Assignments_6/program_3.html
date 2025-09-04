@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <h1>
+            Program_3
+        </h1>
+    </center>
+
+    <form action="">
+        <input type="text" name="" id="row" placeholder="Enter a rows...">
+        <br> <br>
+        <input type="text" name="" id="col" placeholder="Enter a cols...">
+        <br> <br>
+        <input type="submit" name="" id="btn">
+        <button type="text" name="" id="clear_table" value="clear table...">Clear table</button>
+    </form>
+
+        <table border="1" id="table">
+
+        </table>
+
+
+    <script>
+        const btn = document.getElementById('btn')
+        btn.addEventListener('click', (e) => {
+            e.preventDefault()
+
+            const table = document.getElementById('table')
+            const row = document.getElementById('row').value
+            const col = document.getElementById('col').value
+
+            for (let i = 0; i < row; i += 1) {
+                const tr = document.createElement('tr')
+                for (let j = 0; j < col; j += 1){
+                    const td = document.createElement('td')
+                    td.innerHTML = 'col'
+                    tr.appendChild(td)
+                }
+                table.appendChild(tr)
+            }
+        })
+
+        document.getElementById('clear_table')
+        .addEventListener('click', () => {
+            document.getElementById('table').innerHTML = '';
+        })
+    </script>
+</body>
+</html>

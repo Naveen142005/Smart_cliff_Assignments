@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0
+        }
+        .main{
+            width: 100vw;
+            height: 50vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            gap: 80px;
+        }
+    
+        img{
+            width: 250px;
+            height: 250px;
+            border-radius: 8px;
+            transition: all .3s ease-out;
+            border: 1.6px solid rgb(255, 255, 255);
+            cursor: pointer;
+        }
+        .hov:hover{
+            box-shadow: 0 0 50px rgb(255, 166, 0);
+        }
+        #outer{
+            inset: 0;
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            background-color: #a5a4a4d2;
+            transition: all 1s ease-out;
+            cursor: pointer;
+        }
+        #outer img{
+            transition: all 1s ease-out;
+            width: 70%;
+            height: 70%;
+            object-fit: cover;
+            position: relative;
+            bottom: 2.1rem;
+            cursor:auto;
+        }
+    </style>
+</head>
+<body bgcolor="black">
+    <center>
+        <h1 style="color: white;margin-top: 7rem;">
+            4. Image Gallery with Modal Preview 
+        </h1>
+    </center>
+    <div class="main">
+            <img id = "img_1" class="hov" src="./15342683.jpg" alt="">
+            <img id = "img_2" class="hov" src="./772223-the-last-airbender-wallpaper.jpg" alt="">
+            <img id = "img_3" class="hov" src="./2026108.jpg" alt="">
+    </div>
+
+    <div id="outer">
+        <img src="./15342683.jpg" alt="" >
+    </div>
+    <script>
+        const img_1 = document.getElementById('img_1')
+        const img_2 = document.getElementById('img_2')
+        const img_3 = document.getElementById('img_3')
+
+        img_1.addEventListener('click', () => {
+            document.getElementById('outer').style.display = 'flex'
+            document.getElementById('outer').children[0].src = img_1.src
+        })
+
+        img_2.addEventListener('click', () => {
+            document.getElementById('outer').style.display = 'flex'
+            document.getElementById('outer').children[0].src = img_2.src
+        })
+
+        img_3.addEventListener('click', () => {
+            document.getElementById('outer').style.display = 'flex'
+            document.getElementById('outer').children[0].src = img_3.src
+        })
+        document.getElementById('outer').addEventListener('click', (event) => {
+            if (event.target === document.getElementById('outer')) {
+                document.getElementById('outer').style.display = 'none'
+            }
+        })
+    </script>
+</body>
+</html>

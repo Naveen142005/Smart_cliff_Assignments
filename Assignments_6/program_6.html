@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      body {
+        background: black;
+        color: white;
+      }
+      textarea {
+        width: 300px;
+        height: 100px;
+      }
+      #count {
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h2>Character Counter</h2>
+      <textarea id="txt" maxlength="100"></textarea>
+      <div id="count">100 characters left</div>
+    </center>
+    <script>
+      let ta = document.getElementById("txt");
+      let count = document.getElementById("count");
+      let max = ta.getAttribute("maxlength");
+
+      ta.addEventListener("input", () => {
+        let len = ta.value.length;
+        let left = max - len;
+
+        count.innerText = left + " characters left";
+        count.style.color = left === 0 ? "red" : "white";
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FAQ Accordion</title>
+  <style>
+    body { background:black; color:white; font-family:sans-serif; }
+    details {
+      margin: 10px auto;
+      width: 400px;
+      border: 1px solid cyan;
+      padding: 5px;
+      background: #222;
+    }
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+      outline: none;
+    }
+    
+  </style>
+</head>
+<body>
+  <h2 style="text-align:center;">FAQ Section</h2>
+
+  <details id = "q1">
+    <summary>What is JavaScript?</summary>
+    <p>JavaScript is used to make web pages interactive.</p>
+  </details>
+
+  <details id = "q2">
+    <summary>What is HTML?</summary>
+    <p>HTML is the structure of a web page.</p>
+  </details>
+
+  <details id = "q3">
+    <summary>What is CSS?</summary>
+    <p>CSS is used to style web pages.</p>
+  </details>
+
+    <script>
+        let q = document.querySelectorAll("details");
+        let p =document.querySelectorAll("p");
+        q[0].addEventListener('click', () => {
+            q.forEach(item => {
+                if (item !== q[0]) {
+                    item.removeAttribute('open');
+                }
+            });
+        })
+        q[1].addEventListener('click', () => {
+            q.forEach(item => {
+                if (item !== q[1]) {
+                    item.removeAttribute('open');
+                }
+            });
+        })
+        q[2].addEventListener('click', () => {
+            q.forEach(item => {
+                if (item !== q[2]) {
+                    item.removeAttribute('open');
+                }
+            });
+        })
+    </script>
+</body>
+</html>
