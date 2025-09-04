@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <center>
+      <h1>Payment Gateway...</h1>
+    </center>
+
+    <input type="number" name="" id="box" />
+    <input type="submit" name="" id="btn" />
+    <div id="result"></div>
+    <script>
+      const onsuccess = (amount) => `payment of ${amount} successful!`;
+
+      const onFailure = () => "Payment failed. Invalid amount.";
+
+      const processPayment = (amount, onSuccess, onFailure) =>
+        amount > 0 ? onSuccess(amount) : onFailure();
+
+      document.getElementById("btn").addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const amount = Number(document.getElementById("box").value);
+
+        const res = processPayment(amount, onsuccess, onFailure);
+
+        document.getElementById("result").innerText += res;
+
+        setTimeout(() => {
+          document.getElementById("result").innerText = "";
+        }, 1500);
+      });
+      processPayment(0, onsuccess, onFailure);
+    </script>
+  </body>
+</html>
