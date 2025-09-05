@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vehicle Service Center</title>
+    <style>
+      body {
+        /* color-scheme: ; */
+        background-color: black;
+        color: white;
+      }
+      input {
+        border: 2px solid white;
+        background-color: rgb(245, 228, 228);
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+      .for_flex {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1.5rem;
+      }
+      textarea {
+        resize: vertical;
+      }
+      input,
+      select,
+      textarea {
+        padding: 10px;
+        width: 200px;
+      }
+      #tracking {
+        position: relative;
+      }
+      #spin {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      #add {
+        margin-left: 2rem;
+      }
+      .animate {
+        width: 15px;
+        height: 15px;
+        border: 3px solid yellow;
+        border-top-color: transparent;
+        border-bottom-color: transparent;
+        border-radius: 50%;
+        animation: spin_navee 0.7s ease-out infinite;
+      }
+      .hide {
+        display: none;
+      }
+      @keyframes spin_navee {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Vehicle Service Center</h1>
+    <form action="">
+      <div class="for_flex">
+        <label for="name">Name:</label>
+        <input type="text" id="name" />
+      </div>
+
+      <div class="for_flex">
+        <label for="vehicle">Vehicle Type:</label>
+        <select id="vehicle">
+          <option value="">--select vehicle type--</option>
+          <option value="Car">Car</option>
+          <option value="Bike">Bike</option>
+        </select>
+      </div>
+
+      <div class="for_flex">
+        <label for="model">Model:</label>
+        <input type="text" id="model" />
+      </div>
+
+      <div class="for_flex">
+        <label for="services">Available Services:</label>
+        <select id="services">
+          <option value="">--select services--</option>
+          <option value="Oil Change">Oil Change</option>
+          <option value="Tire Replacement">Tire Replacement</option>
+          <option value="Engine Check">Engine Check</option>
+          <option value="Full services">Full services</option>
+        </select>
+      </div>
+
+      <div class="for_flex">
+        <label for="contact">Contact Info:</label>
+        <textarea id="contact" cols="30" rows="5"></textarea>
+      </div>
+      <div class="for_flex" style="flex-direction: row; gap: 10px">
+        <input type="submit" id="btn" />
+        <input type="reset" id = "ret"/>
+      </div>
+
+      <div id="result"></div>
+      <div id="booked"></div>
+      <div id="tracking">
+        <div id="spin" class="hide animate"></div>
+      </div>
+      <div id="bill"></div>
+    </form>
+
+    <script>
+      const result = document.getElementById("result");
+      const btn = document.getElementById("btn");
+      const price_map = new Map();
+      const time_map = new Map();
+      price_map.set("Oil Change", 1000);
+      price_map.set("Tire Replacement", 2000);
+      price_map.set("Engine Check", 3000);
+      price_map.set("Full services", 4000);
+
+      time_map.set("Oil Change", "30 minutes");
+      time_map.set("Tire Replacement", "1 hour");
+      time_map.set("Engine Check", "2 hours");
+      time_map.set("Full services", "4 hours");
+
+      btn.addEventListener("click", (e) => {
+        btn.remove()
+        document.getElementById('ret').remove()
+        e.preventDefault();
+        const val = document.getElementById("services").value;
+        const price = price_map.get(val);
+        const time = time_map.get(val);
+
+        result.innerHTML += `
+            <div>Total price : ${price} </div>
+              <div>Total time : ${time} </div>
+              <button id = "ok"> OK</button>
+              <button id = "cancel"> Cancel</button>
+            </div>
+          `;
+        function waiting(sec, meg) {
+          return new Promise((res) => {
+            setTimeout(() => {
+              res(meg);
+            }, sec);
+          });
+        }
+        function add_details() {
+          const bill = document.getElementById("bill");
+          const nameInput = document.getElementById("name");
+          const vehicleSelect = document.getElementById("vehicle");
+          const modelInput = document.getElementById("model");
+          const servicesSelect = document.getElementById("services");
+          const contactTextarea = document.getElementById("contact");
+          bill.innerHTML += `
+          <p><b>----------User Details----------</b></p>
+          <p><strong>Name:</strong> ${nameInput.value}</p>
+          <p><strong>Vehicle Type:</strong> ${vehicleSelect.value}</p>
+          <p><strong>Model:</strong> ${modelInput.value}</p>
+          <p><strong>Services:</strong> ${servicesSelect.value}</p>
+          <p><strong>Contact Info:</strong> ${contactTextarea.value}</p>
+          `;
+        }
+        document.getElementById("ok").addEventListener("click", (e) => {
+          e.preventDefault();
+          document.getElementById("ok").remove();
+          document.getElementById("cancel").remove();
+
+          const track = document.getElementById("tracking");
+          const booked = document.getElementById("booked");
+          booked.innerHTML += `<div>Booked</div>`;
+          waiting(2000, "In process...")
+            .then((res) => {
+              document.getElementById("spin").classList.remove("hide");
+              track.innerHTML += `<p id = 'add' >${res}</p>`;
+              return waiting(3000, "Process Completed");
+            })
+            .then((res) => {
+              document.getElementById("spin").classList.remove("animate");
+              document.getElementById("spin").innerHTML = "️✅";
+              track.lastElementChild.innerHTML = res;
+              add_details()
+            });
+        });
+
+        document.getElementById('cancel').addEventListener('click',() => {
+          document.getElementById('ok').remove();
+          document.getElementById('cancel').remove();
+          document.getElementById('result').innerHTML += 'Booking cancelled'
+        })
+      });
+    </script>
+  </body>
+</html>

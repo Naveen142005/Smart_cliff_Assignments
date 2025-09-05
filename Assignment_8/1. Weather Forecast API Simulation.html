@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <center>
+      <h1>Weather Seeing Website</h1>
+    </center>
+    <br />
+
+    <input type="text" name="" id="city" placeholder="Enter a city" />
+    <input type="submit" id="btn" />
+    <br /><br />
+    <div id="res">
+        <div id="old"></div>
+    </div>
+
+    <script>
+      const btn = document.getElementById("btn");
+      btn.addEventListener("click", () => {
+        const city = document.getElementById("city").value;
+
+        fetch(
+          `http://api.weatherapi.com/v1/current.json?key=d2588aed17c04b1f97b173009253108&q=${city}`
+        )
+        .then((res) =>  res.json())
+          .then((data) => {
+            
+            
+            const temp_in_celious = data.current.temp_c
+            const temp_in_f = data.current.temp_f
+            const location_ = city
+            const region_ = data.location.region
+
+            console.log(temp_in_celious, temp_in_f,location_,region_);
+            
+            let result = document.getElementById('res')
+            document.getElementById('old').remove()
+            result.innerHTML += 
+            ` <div id ="old">
+                <div>Location = ${location_}</div>
+                <div>region = ${region_}</div>
+                <div>temp_in_celsius = ${temp_in_celious}</div>
+                <div>temp_in_fahrenheit = ${temp_in_f}</div>
+                </div>               
+            `
+          })
+          .catch((err) => {
+            document.getElementById('res').innerHTML = `<h2 style="color:red;">Please enter a valid city name</h2>`
+          });
+          
+
+  
+
+        weather();
+      });
+    
+
+      // app = () => return "Naveen")
+      // console.log(app());
+      
+
+    
+
+      // function app(b){
+      //   console.log(b(() => {
+      //     console.log("hello")
+      //   }));
+      // }
+
+      // app ((hello) => {
+      //   hello();
+      //   console.log("naveeen kumar");
+      //   return "anveen"
+      // })
+
+    //  app(() =>  "naveen" ) 
+    </script>
+  </body>
+</html>
