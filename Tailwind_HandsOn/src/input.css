@@ -1,1 +1,25 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+    .profile-card{
+        @apply mt-4 w-[350px] h-[270px] border   shadow-md rounded-md
+    }
+    .image-border{
+        @apply border-4 border-blue-800 
+    }
+    .flex-center{
+        @apply flex flex-col justify-around items-center
+    }
+    .follow-button-cls{
+        @apply bg-blue-500 text-white rounded-md
+    }
+    .message-btn-cls{
+        @apply bg-gray-300 text-black rounded-md
+    }
+    .button{
+        @apply flex w-[170px] justify-between mb-4
+    }
+    
+}
